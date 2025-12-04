@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>男朋友基本信息收集表</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .header-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            opacity: 0.2;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .form-section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f2f5;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #6a11cb;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+        
+        .form-group {
+            flex: 1 0 300px;
+            padding: 0 10px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+            font-size: 1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 15px;
+            border: 2px solid #e1e5eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background-color: #fdfdfd;
+        }
+        
+        .form-control:focus {
+            border-color: #6a11cb;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+            outline: none;
+            background-color: white;
+        }
+        
+        .required:after {
+            content: " *";
+            color: #e74c3c;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            padding: 16px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 200px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(to right, #2ecc71, #1abc9c);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .privacy-notice {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+            border-left: 4px solid #3498db;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: 5px;
+            color: #6a11cb;
+            cursor: help;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            font-weight: normal;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .form-group {
+                flex: 1 0 100%;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                min-width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .button-container {
+                flex-direction: column;
+            }
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .checkbox-container input {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>男朋友基本信息收集表</h1>
+            <p>2025年12月4号，自愿填写。</p>
+            <div class="header-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="section-title">
+                <i class="fas fa-user-circle"></i> 个人基本信息
+            </div>
+            
+            <form id="boyfriendForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">姓名</label>
+                        <input type="text" id="name" class="form-control" placeholder="请输入你的全名" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="required">年龄</label>
+                        <input type="number" id="age" class="form-control" placeholder="请输入你的年龄" min="18" max="100" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">生日</label>
+                        <input type="date" id="birthday" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>星座</label>
+                        <input type="text" id="zodiac" class="form-control" placeholder="根据生日自动计算" readonly>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">手机号码</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="请输入你的手机号码" pattern="[0-9]{11}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>微信号</label>
+                        <input type="text" id="wechat" class="form-control" placeholder="请输入你的微信号">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="section-title">
+                    <i class="fas fa-home"></i> 家庭与工作信息
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">家庭住址</label>
+                        <input type="text" id="address" class="form-control" placeholder="请输入详细家庭住址" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required">现在单位/公司</label>
+                        <input type="text" id="company" class="form-control" placeholder="请输入你工作的单位或公司名称" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>职位/岗位</label>
+                        <input type="text" id="position" class="form-control" placeholder="请输入你的职位或岗位">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>电话</label>
+                        <input type="tel" id="workPhone" class="form-control" placeholder="请输入你的电话">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>工作邮箱</label>
+                        <input type="email" id="workEmail" class="form-control" placeholder="请输入你的工作邮箱">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="section-title">
+                    <i class="fas fa-star"></i> 其他信息
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>兴趣爱好</label>
+                        <input type="text" id="hobbies" class="form-control" placeholder="例如：篮球、摄影、旅行等">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>最喜欢的美食</label>
+                        <input type="text" id="favoriteFood" class="form-control" placeholder="请输入他最喜欢的美食">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>血型</label>
+                        <select id="bloodType" class="form-control">
+                            <option value="">请选择血型</option>
+                            <option value="A">A型</option>
+                            <option value="B">B型</option>
+                            <option value="O">O型</option>
+                            <option value="AB">AB型</option>
+                            <option value="unknown">未知</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>身高 (cm)</label>
+                        <input type="number" id="height" class="form-control" placeholder="请输入你的身高" min="150" max="220">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>紧急联系人</label>
+                        <input type="text" id="emergencyContact" class="form-control" placeholder="请输入紧急联系人姓名">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>紧急联系电话</label>
+                        <input type="tel" id="emergencyPhone" class="form-control" placeholder="请输入紧急联系电话">
+                    </div>
+                </div>
+                
+                <div class="privacy-notice">
+                    <i class="fas fa-shield-alt"></i> 隐私提示：所有填写的信息仅保存在您的设备本地，不会上传到任何服务器。您可以安全地填写并使用导出功能。
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" id="agreePrivacy" required>
+                    <label for="agreePrivacy">我确认已阅读并理解隐私提示，并同意仅在本地处理这些信息</label>
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <button type="button" id="exportExcel" class="btn btn-primary">
+                    <i class="fas fa-file-excel"></i> 导出为Excel文件
+                </button>
+                
+                <button type="button" id="saveLocal" class="btn btn-secondary">
+                    <i class="fas fa-save"></i> 保存到本地
+                </button>
+            </div>
+            
+            <div class="footer">
+                <p>© 2023 男朋友信息收集工具 | 仅供个人使用 | </p>
+            </div>
+        </form>
+    </div>
+
+    <!-- 使用SheetJS库处理Excel导出 -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
+    <script>
+        // 计算星座
+        document.getElementById('birthday').addEventListener('change', function() {
+            const birthday = new Date(this.value);
+            const month = birthday.getMonth() + 1;
+            const day = birthday.getDate();
+            
+            const zodiac = calculateZodiac(month, day);
+            document.getElementById('zodiac').value = zodiac;
+        });
+        
+        function calculateZodiac(month, day) {
+            const zodiacSigns = [
+                {name: "摩羯座", start: [12, 22], end: [1, 19]},
+                {name: "水瓶座", start: [1, 20], end: [2, 18]},
+                {name: "双鱼座", start: [2, 19], end: [3, 20]},
+                {name: "白羊座", start: [3, 21], end: [4, 19]},
+                {name: "金牛座", start: [4, 20], end: [5, 20]},
+                {name: "双子座", start: [5, 21], end: [6, 21]},
+                {name: "巨蟹座", start: [6, 22], end: [7, 22]},
+                {name: "狮子座", start: [7, 23], end: [8, 22]},
+                {name: "处女座", start: [8, 23], end: [9, 22]},
+                {name: "天秤座", start: [9, 23], end: [10, 23]},
+                {name: "天蝎座", start: [10, 24], end: [11, 22]},
+                {name: "射手座", start: [11, 23], end: [12, 21]}
+            ];
+            
+            for (let sign of zodiacSigns) {
+                const [startMonth, startDay] = sign.start;
+                const [endMonth, endDay] = sign.end;
+                
+                if ((month === startMonth && day >= startDay) || 
+                    (month === endMonth && day <= endDay) ||
+                    (startMonth > endMonth && (month > startMonth || month < endMonth))) {
+                    return sign.name;
+                }
+            }
+            
+            return "未知";
+        }
+        
+        // 保存到本地存储
+        document.getElementById('saveLocal').addEventListener('click', function() {
+            if (!document.getElementById('agreePrivacy').checked) {
+                alert('请先确认隐私协议');
+                return;
+            }
+            
+        
+            
+            const formData = getFormData();
+            localStorage.setItem('boyfriendInfo', JSON.stringify(formData));
+            alert('信息已成功保存到本地！');
+        });
+        
+        // 导出为Excel
+        document.getElementById('exportExcel').addEventListener('click', function() {
+            if (!document.getElementById('agreePrivacy').checked) {
+                alert('请先确认隐私协议');
+                return;
+            }
+            
+           
+            
+            const formData = getFormData();
+            exportToExcel(formData);
+        });
+        
+        function getFormData() {
+            return {
+                姓名: document.getElementById('name').value,
+                年龄: document.getElementById('age').value,
+                生日: document.getElementById('birthday').value,
+                星座: document.getElementById('zodiac').value,
+                手机号码: document.getElementById('phone').value,
+                微信号: document.getElementById('wechat').value,
+                家庭住址: document.getElementById('address').value,
+                工作单位: document.getElementById('company').value,
+                职位岗位: document.getElementById('position').value,
+                工作电话: document.getElementById('workPhone').value,
+                工作邮箱: document.getElementById('workEmail').value,
+                兴趣爱好: document.getElementById('hobbies').value,
+                最喜欢的美食: document.getElementById('favoriteFood').value,
+                血型: document.getElementById('bloodType').value,
+                身高: document.getElementById('height').value + (document.getElementById('height').value ? ' cm' : ''),
+                紧急联系人: document.getElementById('emergencyContact').value,
+                紧急联系电话: document.getElementById('emergencyPhone').value,
+                记录时间: new Date().toLocaleString('zh-CN')
+            };
+        }
+        
+        function exportToExcel(data) {
+            // 创建工作簿
+            const wb = XLSX.utils.book_new();
+            
+            // 创建工作表数据
+            const wsData = [];
+            
+            // 添加标题行
+            wsData.push(["男朋友基本信息收集表"]);
+            wsData.push(["生成时间:", new Date().toLocaleString('zh-CN')]);
+            wsData.push([]); // 空行
+            
+            // 添加数据行
+            for (const [key, value] of Object.entries(data)) {
+                wsData.push([key, value]);
+            }
+            
+            // 创建 worksheet
+            const ws = XLSX.utils.aoa_to_sheet(wsData);
+            
+            // 设置列宽
+            const wscols = [
+                {wch: 15}, // 第一列宽度
+                {wch: 30}  // 第二列宽度
+            ];
+            ws['!cols'] = wscols;
+            
+            // 合并标题行
+            ws['!merges'] = [
+                XLSX.utils.decode_range("A1:B1")
+            ];
+            
+            // 将工作表添加到工作簿
+            XLSX.utils.book_append_sheet(wb, ws, "男朋友信息");
+            
+            // 生成Excel文件并下载
+            const fileName = `男朋友基本信息_${data.姓名}_${new Date().toISOString().slice(0,10)}.xlsx`;
+            XLSX.writeFile(wb, fileName);
+        }
+        
+        // 页面加载时检查是否有保存的数据
+        window.addEventListener('load', function() {
+            const savedData = localStorage.getItem('boyfriendInfo');
+            if (savedData) {
+                if (confirm('检测到本地保存的信息，是否加载？')) {
+                    const data = JSON.parse(savedData);
+                    // 这里可以添加代码将数据填充到表单中
+                    // 为了简化，这里只显示提示
+                    alert('本地数据已加载，请手动填写或使用导出功能查看之前保存的数据。');
+                }
+            }
+            
+            // 设置生日为20年前的今天（示例）
+            const today = new Date();
+            const defaultBirthday = new Date(today.getFullYear() - 25, today.getMonth(), today.getDate());
+            document.getElementById('birthday').valueAsDate = defaultBirthday;
+            
+            // 触发生日变化事件以计算星座
+            document.getElementById('birthday').dispatchEvent(new Event('change'));
+        });
+    </script>
+</body>
+</html>
